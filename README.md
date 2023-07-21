@@ -1,2 +1,8 @@
 # Xbox360-AppMgr
-In short, it's a process manager. It handles dlls, sys dlls, titles, packages. 
+
+An Application Mananger for the Xbox 360.
+This is not kernel version dependant.
+
+Easy one definition and construct install.
+
+,.... filling in still
