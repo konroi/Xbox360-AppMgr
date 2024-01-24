@@ -1,8 +1,10 @@
 # Xbox360-AppMgr
 
-An Application Mananger for the Xbox 360.
+An Application / Process Mananger for the Xbox 360.
 This is not kernel version dependant.
 
 Easy one definition and construct install.
 
-,.... filling in still
+Simply grab a process by it's virtual address space (any address) or it's modules name and gain a 'pInstance', which holds many functions and cached data of the instance in case it is to be unloaded..
+
+Figure it out...
