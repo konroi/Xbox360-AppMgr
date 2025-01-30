@@ -17,8 +17,16 @@ namespace AppManager {
 		NTSTATUS iStatus;
 		PLDR_DATA_TABLE_ENTRY pLDR; //contains ptrs -- no deep cpy
 		PXEX_EXECUTION_ID pExID; //contains ptrs -- no deep cpy
-		DWORD Loadflags, ImageBase, NtHeaderBase, TimeDateStamp, Checksum, Version, TitleID; //local copies, incase we lose the module in ram
+
+		//local cache, incase we lose the module in ram
 		std::wstring CachedDllNameW;
+		DWORD Loadflags;
+		DWORD ImageBase;
+		DWORD NtHeaderBase;
+		DWORD TimeDateStamp;
+		DWORD Checksum;
+		DWORD Version;
+		DWORD TitleID; 
 		E_AppType Type;
 		HANDLE hand;
 
@@ -43,4 +51,7 @@ namespace AppManager {
 		bool IsWhiteListedApp();
 		bool Valid();
 	};
+
+	void RelaunchCurrentActiveTitle();
+	void RelaunchCurrentActiveTitleThreaded();
 };
