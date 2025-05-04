@@ -49,20 +49,16 @@ NTSTATUS Hooks::Security::XexGetProcedureAddressHook(HANDLE hand, DWORD dwOrdina
 }
 
 NTSTATUS Hooks::XexLoadImage(LPCSTR szXexName, DWORD dwModuleTypeFlags, DWORD dwMinimumVersion, PHANDLE pHandle) {
-	HANDLE mHandle = 0;
-	NTSTATUS result = Native::XexLoadImage(szXexName, dwModuleTypeFlags, dwMinimumVersion, &mHandle);
-	if (pHandle != NULL) *pHandle = mHandle;
+	NTSTATUS result = Native::XexLoadImage(szXexName, dwModuleTypeFlags, dwMinimumVersion, pHandle);
 	if (NT_SUCCESS(result)) {
-		C_AppInstance Instance = C_AppInstance(mHandle);
+		C_AppInstance Instance = C_AppInstance(*pHandle);
 		if (SUCCEEDED(Instance.iStatus)) Instance.Init();
 	}
 	return result;
 }
 
 NTSTATUS Hooks::XexLoadExecutable(PCHAR szXexName, PHANDLE pHandle, DWORD dwModuleTypeFlags, DWORD dwMinimumVersion) {
-	HANDLE mHandle = 0;
 	NTSTATUS result = Native::XexLoadExecutable(szXexName, pHandle, dwModuleTypeFlags, dwMinimumVersion);
-	if (pHandle != NULL) *pHandle = mHandle;
 	if (NT_SUCCESS(result)) {
 		C_AppInstance Instance = C_AppInstance(*XexExecutableModuleHandle);
 		if (SUCCEEDED(Instance.iStatus)) Instance.Init();
